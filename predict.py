@@ -5,17 +5,19 @@ from image_transform import ImageTransform
 
 class_index = ["ants", "bees"]
 
+
 class Predictor():
     def __init__(self, class_index):
         self.clas_index = class_index
 
-    def predict_max(self, output): # [0.9, 0.1]
+    def predict_max(self, output):  # [0.9, 0.1]
         max_id = np.argmax(output.detach().numpy())
         predicted_label = self.clas_index[max_id]
         return predicted_label
 
 
 predictor = Predictor(class_index)
+
 
 def predict(img):
     # prepare network
@@ -30,7 +32,7 @@ def predict(img):
     # prepare input img
     transform = ImageTransform(resize, mean, std)
     img = transform(img, phase="test")
-    img = img.unsqueeze_(0) # (chan, height, width) -> (1, chan, height, width)
+    img = img.unsqueeze_(0)  # (chan, height, width) -> (1, chan, height, width)
 
     # predict 
     output = model(img)

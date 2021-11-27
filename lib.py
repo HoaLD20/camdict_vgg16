@@ -5,7 +5,6 @@ import numpy as np
 import json
 from PIL import Image
 import matplotlib.pyplot as plt
-# %matplotlib inline
 
 import torch
 import torch.nn as nn

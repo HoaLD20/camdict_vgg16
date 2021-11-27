@@ -4,6 +4,7 @@ from config import *
 from utils import make_datapath_list, train_model, params_to_update, load_model
 from dataset import MyDataset
 
+
 def main():
     train_list = make_datapath_list("train")
     val_list = make_datapath_list("val")
@@ -15,7 +16,7 @@ def main():
     # dataloader
     train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size, shuffle=True)
     val_dataloader = torch.utils.data.DataLoader(val_dataset, batch_size, shuffle=False)
-    dataloader_dict = {"train":train_dataloader, "val":val_dataloader}
+    dataloader_dict = {"train": train_dataloader, "val": val_dataloader}
 
     # network
     use_pretrained = True
@@ -28,9 +29,9 @@ def main():
     # optimizer
     params1, params2, params3 = params_to_update(net)
     optimizer = optim.SGD([
-        {'params': params1, 'lr': 1e-4}, 
+        {'params': params1, 'lr': 1e-4},
         {'params': params2, 'lr': 5e-4},
-        {'params': params3, 'lr': 1e-3}, 
+        {'params': params3, 'lr': 1e-3},
     ], momentum=0.9)
 
     # training
@@ -46,6 +47,3 @@ if __name__ == "__main__":
     # net.classifier[6] = nn.Linear(in_features=4096, out_features=2)
 
     # load_model(net, save_path)
-    
-
-
